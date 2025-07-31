@@ -20,6 +20,7 @@ const tableBody = document.getElementById('tableBody');
 const hideRowsBtn = document.getElementById('hideRowsBtn');
 const costTooltip = document.getElementById('costTooltip');
 const tooltipContent = document.getElementById('tooltipContent');
+const tooltipCloseBtn = document.getElementById('tooltipCloseBtn');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -121,6 +122,34 @@ function setupEventListeners() {
 
     // Add event listener for hide rows button
     hideRowsBtn.addEventListener('click', toggleHideLowerLevels);
+    
+    // Add event listener for tooltip close button
+    tooltipCloseBtn.addEventListener('click', hideCostTooltip);
+    
+    // Add touch event for mobile devices
+    tooltipCloseBtn.addEventListener('touchend', (e) => {
+        e.preventDefault(); // Prevent double-firing on mobile
+        hideCostTooltip();
+    });
+    
+    // Prevent tooltip from hiding when hovering over the tooltip itself
+    costTooltip.addEventListener('mouseenter', () => {
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = null;
+        }
+    });
+    
+    costTooltip.addEventListener('mouseleave', () => {
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+        }
+        
+        tooltipTimeout = setTimeout(() => {
+            currentHoveredLevel = null;
+            hideCostTooltip();
+        }, 150);
+    });
 }
 
 // Reset table state when changing hero/equipment
@@ -500,8 +529,8 @@ function showCostTooltip(event, hoveredLevel) {
     }
     
     // Update tooltip header with specific upgrade path
-    const tooltipHeader = costTooltip.querySelector('.tooltip-header');
-    tooltipHeader.textContent = `Upgrade from lvl ${selectedLevel} → ${hoveredLevel}`;
+    const tooltipTitle = costTooltip.querySelector('.tooltip-title');
+    tooltipTitle.textContent = `Upgrade from lvl ${selectedLevel} → ${hoveredLevel}`;
     
     // Build tooltip content
     let tooltipHTML = '';

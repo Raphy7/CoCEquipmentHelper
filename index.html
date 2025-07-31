@@ -41,6 +41,10 @@
                         Hide Lower Levels
                     </button>
                 </div>
+                <div class="info-text">
+                    <span class="info-desktop">💡 Select your current level with the checkbox, then hover over higher levels to see cumulative upgrade costs</span>
+                    <span class="info-mobile">💡 Select your current level with the checkbox, then tap on higher levels to see cumulative upgrade costs</span>
+                </div>
                 <div class="table-wrapper">
                     <table id="statsTable">
                         <thead id="tableHead"></thead>
@@ -51,7 +55,10 @@
             
             <!-- Tooltip for cumulative costs -->
             <div id="costTooltip" class="cost-tooltip hidden">
-                <div class="tooltip-header">Upgrade Cost</div>
+                <div class="tooltip-header">
+                    <span class="tooltip-title">Upgrade Cost</span>
+                    <button class="tooltip-close" id="tooltipCloseBtn" aria-label="Close tooltip">×</button>
+                </div>
                 <div id="tooltipContent" class="tooltip-content"></div>
             </div>
         </div>
