@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Equipment Helper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏰 Clash Equipment Helper</h1>
+            <p>View equipment stats for different heroes and levels</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="heroSelect">Select Hero:</label>
+                <select id="heroSelect">
+                    <option value="">-- Choose a Hero --</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="equipmentSelect">Select Equipment:</label>
+                <select id="equipmentSelect" disabled>
+                    <option value="">-- Choose Equipment --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div id="loading" class="loading hidden">Loading...</div>
+            <div id="noData" class="no-data hidden">
+                <p>Please select a hero and equipment to view stats.</p>
+            </div>
+            <div id="statsContainer" class="stats-container hidden">
+                <h2 id="statsTitle"></h2>
+                <div class="table-wrapper">
+                    <table id="statsTable">
+                        <thead id="tableHead"></thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
