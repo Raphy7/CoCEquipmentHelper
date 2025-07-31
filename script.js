@@ -256,14 +256,7 @@ function createStatsTable(data, hero, equipment) {
         });
     });
 
-    const sortedStatKeys = Array.from(statKeys).sort((a, b) => {
-        // Put cost items at the end
-        const aCost = a.toLowerCase().includes('cost');
-        const bCost = b.toLowerCase().includes('cost');
-        if (aCost && !bCost) return 1;
-        if (!aCost && bCost) return -1;
-        return a.localeCompare(b);
-    });
+    const sortedStatKeys = Array.from(statKeys);
 
     // Create table header
     tableHead.innerHTML = '';
